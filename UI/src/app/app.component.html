@@ -22,7 +22,7 @@
 
 <script  type="text/javascript" src="app.js"></script>
 <div ng-app="servProvApp" ng-controller="servProvControl">
-  <div class="container">
+  <div class="container1">
     <h1>Bazaar Blockchain Demonstration</h1>
     <h2>Portal : Service Provider</h2>
     <hr>
@@ -32,17 +32,17 @@
     <p>Balance: <b>{{balance}} ETH</b></p>
     <hr>
 
-    <h3>Add New Services</h3>
-    <p><b>Service ID</b></p>
-      <input type="text" [(ngModel)]="serviceID" placeholder="Enter Service ID" name="sID" required>
-    <p><b>Service Details</b></p>
-    <p>OS Type</p>
-    <input type="text" [(ngModel)]="serviceOSType" placeholder="Enter OS Specification" name="sOS" required>
-    <p>RAM</p>
-    <input type="text" [(ngModel)]="serviceRAM" placeholder="Enter RAM Specification" name="sRAM" required>
-    <p><b>Service Price</b></p>
-    <input type="text" [(ngModel)]="servicePrice" placeholder="Enter Service Price" name="sPrice" required>
-    <button (click)="addNewService(serviceID, serviceOSType, serviceRAM, servicePrice)" type="submit" class="registerbtn">Add New Service</button>
+    <h3>Published Plans</h3>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">PlanA</div>
+        <div class="col-sm-3">PlanB</div>
+      </div>
+    </div>
+    <hr>
+
+    <h3>Ongoing Negotiations</h3>
+
     <hr>
 
     <h3>Negotiation Zone</h3>
@@ -63,9 +63,6 @@
     <p><b>Service Price</b></p>
     <input type="text" [(ngModel)]="servicePrice1" placeholder="Enter Service Price" name="sPrice" required>
     <button (click)="negotiateService(serviceID1, serviceStatus1, serviceOSType1, serviceRAM1, servicePrice1)" type="submit" class="registerbtn">Negotiate Service</button>
-    <hr>
-
-    <h3>Ongoing Negotiations</h3>
     <hr>
   </div>
 </div>

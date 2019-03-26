@@ -29,16 +29,6 @@ export class AppComponent {
     });
   };
 
-  addNewService(serviceID, serviceOSType, serviceRAM, servicePrice) {
-    console.log('Adding New Service');
-    let that = this;
-    this.ethcontractService.addOffer(this.transferFrom, serviceID, serviceOSType, serviceRAM, servicePrice).then(function() {
-      console.log("Successfully added offer");
-    }).catch(function(error){
-      console.log(error);
-    });
-  }
-
   negotiateService(serviceID, serviceStatus, serviceOSType, serviceRAM, servicePrice) {
     console.log('Negotiating service' + serviceID);
     let that = this;
