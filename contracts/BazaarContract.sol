@@ -35,6 +35,7 @@ contract BazaarContract {
     temp.offerService.RAM = _offerRAM;
     temp.offerService.OSType = _offerOSType;
     originalOffers[_offerID] = temp;
+    offersNeg[_offerID] = temp;
     return true;
   }
 
