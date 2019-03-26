@@ -2,10 +2,24 @@
 
 /* Add padding to containers */
 .container1 {
-  padding: 16px;
+  padding: 40px;
+  font-stretch: normal;
+  font-size: medium;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+.container {
+  column-gap: 10px;
+}
+
+.col-sm-4 {
+  padding: 20px;
+}
+
+.col-sm-11 {
+  background-color:skyblue;
+  padding: 10px;
+}
 /* Full-width input fields */
 input[type=text], input[type=password] {
   width: 100%;
@@ -15,6 +29,7 @@ input[type=text], input[type=password] {
   border: none;
   background: #f1f1f1;
   font-family: 'Trebuchet MS';
+  font-stretch: narrower;
 }
 
 input[type=text]:focus, input[type=password]:focus {
@@ -35,6 +50,18 @@ hr {
   color: white;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.negBtn {
+  background-color: lightpink;
+  color: black;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  padding: 10px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
