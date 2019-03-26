@@ -21,7 +21,7 @@
 <router-outlet></router-outlet> -->
 
 <script  type="text/javascript" src="app.js"></script>
-<div>
+<div ng-app="servProvApp" ng-controller="servProvControl">
   <div class="container">
     <h1>Bazaar Blockchain Demonstration</h1>
     <h2>Portal : Service Provider</h2>
@@ -34,15 +34,15 @@
 
     <h3>Add New Services</h3>
     <p><b>Service ID</b></p>
-      <input type="text" placeholder="Enter Service ID" name="sID" required>
+      <input type="text" [(ngModel)]="serviceID" placeholder="Enter Service ID" name="sID" required>
     <p><b>Service Details</b></p>
     <p>OS Type</p>
-    <input type="text" placeholder="Enter OS Specification" name="sOS" required>
+    <input type="text" [(ngModel)]="serviceOSType" placeholder="Enter OS Specification" name="sOS" required>
     <p>RAM</p>
-    <input type="text" placeholder="Enter RAM Specification" name="sRAM" required>
+    <input type="text" [(ngModel)]="serviceRAM" placeholder="Enter RAM Specification" name="sRAM" required>
     <p><b>Service Price</b></p>
-    <input type="text" placeholder="Enter Service Price" name="sPrice" required>
-    <button type="submit" class="registerbtn">Add New Service</button>
+    <input type="text" [(ngModel)]="servicePrice" placeholder="Enter Service Price" name="sPrice" required>
+    <button (click)="addNewService(serviceID, serviceOSType, serviceRAM, servicePrice)" type="submit" class="registerbtn">Add New Service</button>
     <hr>
 
     <h3>Negotiation Zone</h3>
