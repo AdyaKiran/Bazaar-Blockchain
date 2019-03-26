@@ -47,22 +47,22 @@
 
     <h3>Negotiation Zone</h3>
     <p><b>Service ID</b></p>
-      <input type="text" placeholder="Enter Service ID" name="sID" required>
+      <input type="text" [(ngModel)]="serviceID1" placeholder="Enter Service ID" name="sID" required>
     <p><b>Service Status</b></p>
-    <select class="select">
-        <option value="1">Advisory</option>
-        <option value="2">Solicited</option>
-        <option value="3">Accepted</option>
-        <option value="4">Rejected</option>
+    <select [(ngModel)]="serviceStatus1" class="select">
+        <option value=1>Advisory</option>
+        <option value=2>Solicited</option>
+        <option value=3>Accepted</option>
+        <option value=4>Rejected</option>
       </select>
     <p><b>Service Details</b></p>
     <p>OS Type</p>
-    <input type="text" placeholder="Enter OS Specification" name="sOS" required>
+    <input type="text" [(ngModel)]="serviceOSType1" placeholder="Enter OS Specification" name="sOS" required>
     <p>RAM</p>
-    <input type="text" placeholder="Enter RAM Specification" name="sRAM" required>
+    <input type="text" [(ngModel)]="serviceRAM1" placeholder="Enter RAM Specification" name="sRAM" required>
     <p><b>Service Price</b></p>
-    <input type="text" placeholder="Enter Service Price" name="sPrice" required>
-    <button type="submit" class="registerbtn">Negotiate Service</button>
+    <input type="text" [(ngModel)]="servicePrice1" placeholder="Enter Service Price" name="sPrice" required>
+    <button (click)="negotiateService(serviceID1, serviceStatus1, serviceOSType1, serviceRAM1, servicePrice1)" type="submit" class="registerbtn">Negotiate Service</button>
     <hr>
 
     <h3>Ongoing Negotiations</h3>

@@ -38,4 +38,14 @@ export class AppComponent {
       console.log(error);
     });
   }
+
+  negotiateService(serviceID, serviceStatus, serviceOSType, serviceRAM, servicePrice) {
+    console.log('Negotiating service' + serviceID);
+    let that = this;
+    this.ethcontractService.setOffer(this.transferFrom, serviceID, serviceStatus, serviceOSType, serviceRAM, servicePrice).then(function() {
+      console.log("Successfully logged negotiation on offer");
+    }).catch(function(error){
+      console.log(error);
+    });
+  }
 }

@@ -61,4 +61,24 @@ export class EthcontractService {
       });
     });
   }
+
+  setOffer(_address, _offerID, _offerState, _offerOSType, _offerRAM, _offerPrice) {
+    let that = this;
+    console.log('Negotiating Offer' + _offerID);
+    return new Promise((resolve, reject) => {
+      let servContract = TruffleContract(tokenAbi);
+      servContract.setProvider(that.web3Provider);
+
+      servContract.deployed().then(function(instance) {
+        return instance.setOffer(_offerID, _offerState, _offerPrice, web3.fromAscii(_offerRAM), web3.fromAscii(_offerOSType), { from: _address, gas: 4698712, gasPrice: "120000000000"});
+      }).then(function (status) {
+        if (status){
+          return resolve({status:true});
+        }
+      }).catch(function(error){
+        console.log(error);
+        return reject("Error in negotiating Offer");
+      });
+    });
+  }
 }
