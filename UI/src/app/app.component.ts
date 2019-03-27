@@ -17,6 +17,7 @@ export class AppComponent {
   constructor( private ethcontractService: EthcontractService ){
     console.log('TEST');
     this.initAndDisplayAccount();
+    this.getNumberofDiscussions();
   }
 
   initAndDisplayAccount = () => {
@@ -29,6 +30,29 @@ export class AppComponent {
       console.log(error);
     });
   };
+   getDiscussions(_id) {
+    let that = this;
+    this.ethcontractService.getDiscussions(this.transferFrom, _id).then(function(offer: any){
+      console.log(offer);
+      // return offer;
+    }).catch(function(error){
+      console.log(error);
+    });
+  }
+  getNumberofDiscussions() {
+    let that = this;
+    this.ethcontractService.getNumberOfDiscussions(this.transferFrom).then(function(numDisc: any){
+      console.log(numDisc.c[0]);
+      var discs = numDisc.c[0];
+      for(var i = 0; i  < discs; i++){
+        that.getDiscussions(i);
+      }
+    }).catch(function(error){
+      console.log(error);
+    });
+  };
+
+  
 
   addNegotiation(_serviceStatus, _serviceOSType, _serviceRAM, _servicePrice) {
     let that = this;

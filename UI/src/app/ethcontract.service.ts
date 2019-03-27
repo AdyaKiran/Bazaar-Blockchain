@@ -23,6 +23,7 @@ export class EthcontractService {
       this.web3Provider = new Web3.providers.HttpProvider('http://localhost:7542');
     }
     window.web3 = new Web3(this.web3Provider);
+    // window.web3.personal.unlockAccount(window.web3.eth.defaultAccount, (error,result) => (console.log(result)));
   }
 
   getAccountInfo() {
@@ -30,6 +31,8 @@ export class EthcontractService {
     return new Promise((resolve, reject) => {
       window.web3.eth.getCoinbase(function(err, account){
         if (err==null){
+          window.web3.personal.unlockAccount(account, (error,result) => (console.log(result)));
+
           window.web3.eth.getBalance(account, function(err, balance){
             if (err==null){
               return resolve({fromAccount: account, balance:(window.web3.fromWei(balance,'ether')).toNumber()});
@@ -61,5 +64,39 @@ export class EthcontractService {
         return reject("Error in negotiating Offer");
       });
     });
+  }
+
+  async getDiscussions(_address, _id){
+    let that = this;
+    console.log('Getting Discussions');
+    return new Promise((resolve, reject) => {
+      console.log('inside promise');
+      var servContract = window.web3.eth.contract(tokenAbi.abi).at("0x9b4F742c8656b7bDAEbb4f70B803349ea4413179");
+      servContract.getDiscussionFromID(_id, {from: _address, gas: 4698712, gasPrice: "120000000000"},function(error, result){
+        if(!error){
+          console.log('inethcontractservice');
+          return resolve(result);
+        } else {
+          console.log(error);
+          return reject('error');
+        }
+      })
+  }
+  }
+
+  async getNumberOfDiscussions(_address) {
+    let that = this;
+    console.log('Getting Number of Discussions');
+    return new Promise((resolve, reject) => {
+      console.log('inside promise');
+      var servContract = window.web3.eth.contract(tokenAbi.abi).at("0x9b4F742c8656b7bDAEbb4f70B803349ea4413179");
+      servContract.getNumberOfDiscussions( {from: _address, gas: 4698712, gasPrice: "120000000000"},function(error, result){
+        if(!error){
+          return resolve(result);
+        } else {
+          console.log(error);
+          return reject('error');
+        }
+      })
   }
 }
