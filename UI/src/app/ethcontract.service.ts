@@ -51,7 +51,7 @@ export class EthcontractService {
       servContract.setProvider(that.web3Provider);
 
       servContract.deployed().then(function(instance) {
-        return instance.addOffer(_offerID, _offerPrice, web3.fromAscii(_offerRAM), web3.fromAscii(_offerOSType), { from: _address, gas: 4698712, gasPrice: "120000000000"});
+        return instance.addOffer(_offerID, _offerPrice, window.web3.fromAscii(_offerRAM), window.web3.fromAscii(_offerOSType), { from: _address, gas: 4698712, gasPrice: "120000000000"});
       }).then(function (status) {
         if (status){
           return resolve({status:true});
@@ -71,7 +71,7 @@ export class EthcontractService {
       servContract.setProvider(that.web3Provider);
 
       servContract.deployed().then(function(instance) {
-        return instance.setOffer(_offerID, _offerState, _offerPrice, web3.fromAscii(_offerRAM), web3.fromAscii(_offerOSType), { from: _address, gas: 4698712, gasPrice: "120000000000"});
+        return instance.setOffer(_offerID, _offerState, _offerPrice, window.web3.fromAscii(_offerRAM), window.web3.fromAscii(_offerOSType), { from: _address, gas: 4698712, gasPrice: "120000000000"});
       }).then(function (status) {
         if (status){
           return resolve({status:true});

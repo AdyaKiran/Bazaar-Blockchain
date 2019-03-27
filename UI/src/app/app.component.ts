@@ -38,4 +38,16 @@ export class AppComponent {
       console.log(error);
     });
   }
+
+  fillFields(plan) {
+    console.log(plan);
+    console.log(document.getElementById(plan + "-RAM").innerHTML);
+    console.log(document.getElementById(plan + "-OS").innerHTML);
+    console.log(document.getElementById(plan + "-price").innerHTML);
+    
+    document.getElementById("sRAM").value = document.getElementById(plan + "-RAM").innerHTML;
+    document.getElementById("sOS").value = document.getElementById(plan + "-OS").innerHTML;
+    document.getElementById("sPrice").value = document.getElementById(plan + "-price").innerHTML;
+
+  }
 }
