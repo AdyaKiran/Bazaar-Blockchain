@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ɵConsole } from '@angular/core';
 // import * as Web3 from 'web3';
 import * as TruffleContract from 'truffle-contract';
 import { reject } from 'q';
@@ -43,35 +43,15 @@ export class EthcontractService {
     })
   }
 
-  addOffer(_address, _offerID, _offerOSType, _offerRAM, _offerPrice){
+  addDiscussion(_address, _planID, _offerState, _offerPrice, _offerRAM, _offerOSType) {
     let that = this;
-    console.log('Adding Offer' + _offerID);
+    console.log('Negotiating Offer' + _planID);
     return new Promise((resolve, reject) => {
       let servContract = TruffleContract(tokenAbi);
       servContract.setProvider(that.web3Provider);
-
+      console.log("hello");
       servContract.deployed().then(function(instance) {
-        return instance.addOffer(_offerID, _offerPrice, window.web3.fromAscii(_offerRAM), window.web3.fromAscii(_offerOSType), { from: _address, gas: 4698712, gasPrice: "120000000000"});
-      }).then(function (status) {
-        if (status){
-          return resolve({status:true});
-        }
-      }).catch(function(error){
-        console.log(error);
-        return reject("Error in adding new Offer");
-      });
-    });
-  }
-
-  setOffer(_address, _offerID, _offerState, _offerOSType, _offerRAM, _offerPrice) {
-    let that = this;
-    console.log('Negotiating Offer' + _offerID);
-    return new Promise((resolve, reject) => {
-      let servContract = TruffleContract(tokenAbi);
-      servContract.setProvider(that.web3Provider);
-
-      servContract.deployed().then(function(instance) {
-        return instance.setOffer(_offerID, _offerState, _offerPrice, window.web3.fromAscii(_offerRAM), window.web3.fromAscii(_offerOSType), { from: _address, gas: 4698712, gasPrice: "120000000000"});
+        return instance.addDiscussion(window.web3.fromAscii(_planID), _offerState, _offerPrice, window.web3.fromAscii(_offerRAM), window.web3.fromAscii(_offerOSType), { from: _address, gas: 4698712, gasPrice: "120000000000"});
       }).then(function (status) {
         if (status){
           return resolve({status:true});

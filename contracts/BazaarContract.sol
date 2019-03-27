@@ -14,7 +14,7 @@ contract BazaarContract {
 
   //Structure to describe the negotiation offer details
   struct negotiationOffer{
-    uint planID;
+    bytes32 planID;
     state offerState;
     uint offerPrice;
     service offerService;
@@ -33,12 +33,12 @@ contract BazaarContract {
     return current_discussions;
   }
 
-  function getDiscussionFromID(uint _id) public view returns (uint _planID, uint _offerState, uint _offerPrice, bytes32 _offerRAM, bytes32 _offerOSType, bool _isCSP){
+  function getDiscussionFromID(uint _id) public view returns (bytes32 _planID, uint _offerState, uint _offerPrice, bytes32 _offerRAM, bytes32 _offerOSType, bool _isCSP){
     negotiationOffer memory temp = offersNeg[_id];
     return (temp.planID, uint(temp.offerState), temp.offerPrice, temp.offerService.RAM, temp.offerService.OSType, temp.isCSP);
   }
 
-  function addDiscussion(uint _planID, uint _offerState, uint _offerPrice, bytes32 _offerRAM, bytes32 _offerOSType) public returns (bool success){
+  function addDiscussion(bytes32 _planID, uint _offerState, uint _offerPrice, bytes32 _offerRAM, bytes32 _offerOSType) public returns (bool success){
     negotiationOffer memory newDiscussion;
     if (_offerState == 1){
       newDiscussion.offerState = state.Advisory;

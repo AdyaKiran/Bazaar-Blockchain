@@ -81,14 +81,14 @@
               </button>
             </div>
             <div class="modal-body">
-              <p><b>Service ID</b></p>
-              <input type="text" [(ngModel)]="serviceID1" placeholder="Enter Service ID" name="sID" required>
+              <!-- <p><b>Service ID</b></p>
+              <input type="text" [(ngModel)]="serviceID1" placeholder="Enter Service ID" name="sID" required> -->
               <p><b>Service Status</b></p>
               <select [(ngModel)]="serviceStatus1" class="select">
                 <option value=1>Advisory</option>
                 <option value=2>Solicited</option>
                 <option value=3>Accepted</option>
-                <option value=4>Rejected</option>
+                <!-- <option value=4>Rejected</option> -->
               </select>
               <p><b>Service Details</b></p>
               <p>OS Type</p>
@@ -97,13 +97,13 @@
               <input type="text" [(ngModel)]="serviceRAM1" placeholder="Enter RAM Specification" name="sRAM" id="sRAM" required>
               <p><b>Service Price</b></p>
               <input type="text" [(ngModel)]="servicePrice1" placeholder="Enter Service Price" name="sPrice" id="sPrice" required>
-              <button (click)="negotiateService(serviceID1, serviceStatus1, serviceOSType1, serviceRAM1, servicePrice1)" type="submit"
+              <button (click)="addNegotiation(serviceStatus1, serviceOSType1, serviceRAM1, servicePrice1)" type="submit"
                 class="registerbtn">Negotiate Service</button>
               <hr>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <!-- <button type="button" class="btn btn-primary">Negotiate</button> -->
             </div>
           </div>
         </div>

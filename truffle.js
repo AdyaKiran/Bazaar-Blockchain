@@ -7,7 +7,7 @@ module.exports = {
       },
     networks : {
         ganache : {
-            host : "localhost",
+            host : "10.52.153.204",
             port : 7545, // By default Ganache runs on this port.
             network_id : '*', // network_id for ganache is 5777. However, by keeping * as value you can run this node on any network
             gas: 6721975

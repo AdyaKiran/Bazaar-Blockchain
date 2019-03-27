@@ -9,6 +9,7 @@ import { EthcontractService} from './ethcontract.service';
 export class AppComponent {
   title = 'Service Provider Portal';
 
+  plan: '';
   accounts:any;
   transferFrom: '0x0';
   balance = '0 ETH';
@@ -29,25 +30,27 @@ export class AppComponent {
     });
   };
 
-  negotiateService(serviceID, serviceStatus, serviceOSType, serviceRAM, servicePrice) {
-    console.log('Negotiating service' + serviceID);
+  addNegotiation(_serviceStatus, _serviceOSType, _serviceRAM, _servicePrice) {
     let that = this;
-    this.ethcontractService.setOffer(this.transferFrom, serviceID, serviceStatus, serviceOSType, serviceRAM, servicePrice).then(function() {
-      console.log("Successfully logged negotiation on offer");
+    console.log("Adding negotiation Discussion for "+that.plan+_serviceStatus + _serviceOSType + _serviceRAM + _servicePrice);
+    var x = _servicePrice;
+    console.log(Number(x).toString());
+    this.ethcontractService.addDiscussion(this.transferFrom, that.plan, _serviceStatus, parseInt(_servicePrice,10), _serviceRAM, _serviceOSType).then(function() {
+      console.log("Successfully added Discussion for plan");
     }).catch(function(error){
       console.log(error);
     });
   }
 
   fillFields(plan) {
+    let that = this;
+    this.plan = plan;
     console.log(plan);
     console.log(document.getElementById(plan + "-RAM").innerHTML);
     console.log(document.getElementById(plan + "-OS").innerHTML);
     console.log(document.getElementById(plan + "-price").innerHTML);
-    
     document.getElementById("sRAM").value = document.getElementById(plan + "-RAM").innerHTML;
     document.getElementById("sOS").value = document.getElementById(plan + "-OS").innerHTML;
     document.getElementById("sPrice").value = document.getElementById(plan + "-price").innerHTML;
-
   }
 }
