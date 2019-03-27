@@ -2,15 +2,20 @@
 
 # compiled output
 
-UI/dist
-UI/tmp
-UI/out-tsc
+Client UI/dist
+Client UI/tmp
+Client UI/out-tsc
+CSP UI/dist
+CSP UI/tmp
+CSP UI/out-tsc
 
 # dependencies
-UI/node_modules
+Client UI/node_modules
+CSP UI/node_modules
 
 # IDEs and editors
-UI/.idea
+Client UI/.idea
+CSP UI/.idea
 .project
 .classpath
 .c9/
@@ -26,14 +31,19 @@ UI/.idea
 !.vscode/extensions.json
 
 # misc
-UI/.sass-cache
-UI/connect.lock
-UI/coverage
-UI/libpeerconnection.log
+Client UI/.sass-cache
+Client UI/connect.lock
+Client UI/coverage
+Client UI/libpeerconnection.log
+CSP UI/.sass-cache
+CSP UI/connect.lock
+CSP UI/coverage
+CSP UI/libpeerconnection.log
 npm-debug.log
 yarn-error.log
 testem.log
-UI/typings
+Client UI/typings
+CSP UI/typings
 
 # System Files
 .DS_Store

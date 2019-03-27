@@ -2,7 +2,7 @@
   <div class="container1">
 
     <h1>Bazaar Blockchain Demonstration</h1>
-    <h2>Portal : Service Provider</h2>
+    <h2>Portal: Client</h2>
     <hr>
 
     <h3>Ethereum Wallet Details</h3>
@@ -102,7 +102,7 @@
         <td>{{ disc.price }}</td>
         <td>{{ disc.ram }}</td>
         <td>{{ disc.os }}</td>
-        <td>{{ disc.isCSP }}</td> <!--Replace this with negotiate button that calls 'updateDiscussion()'-->
+        <td><button *ngIf="disc.isCSP">Negotiate</button></td>
       </tr>
     </table>
     <hr>

@@ -71,7 +71,7 @@ export class EthcontractService {
     console.log('Getting Discussions');
     return new Promise((resolve, reject) => {
       console.log('inside promise');
-      var servContract = window.web3.eth.contract(tokenAbi.abi).at("0x75dCbc9C16e35B2883690054075A38421F213fc9");
+      var servContract = window.web3.eth.contract(tokenAbi.abi).at("0x8FB176B1b0DC46F0C2E1ADdca9402C82e4faF6F3");
       servContract.getDiscussionFromID(_id, {from: _address, gas: 4698712, gasPrice: "120000000000"},function(error, result){
         if(!error){
           console.log('inethcontractservice');
@@ -89,7 +89,7 @@ export class EthcontractService {
     console.log('Getting Number of Discussions');
     return new Promise((resolve, reject) => {
       console.log('inside promise');
-      var servContract = window.web3.eth.contract(tokenAbi.abi).at("0x75dCbc9C16e35B2883690054075A38421F213fc9");
+      var servContract = window.web3.eth.contract(tokenAbi.abi).at("0x8FB176B1b0DC46F0C2E1ADdca9402C82e4faF6F3");
       servContract.getNumberOfDiscussions( {from: _address, gas: 4698712, gasPrice: "120000000000"},function(error, result){
         if(!error){
           return resolve(result);
