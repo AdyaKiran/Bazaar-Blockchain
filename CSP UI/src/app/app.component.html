@@ -1,3 +1,23 @@
+<script>
+    fillFields(id, price, ram, os) {
+    console.log('Inside fill fields function');
+    // let that = this;
+    document.getElementById("sRAM").value = ram;
+    document.getElementById("sOS").value = os;
+    document.getElementById("sPrice").value = price;
+    document.getElementById("sID").value = id;
+
+    var app = angular.module('servProvApp', []);
+    app.controller('servProvControl', function($scope) {
+    $scope.os = os;
+    $scope.ID = id;
+    $scope.price = price;
+    $scope.ram = ram;
+});
+  }
+
+</script>
+
 <div ng-app="servProvApp" ng-controller="servProvControl">
   <div class="container1">
 
@@ -60,15 +80,15 @@
             </select>
             <p><b>Service Details</b></p>
             <p>OS Type</p>
-            <input type="text" [(ngModel)]="serviceOSType1" placeholder="Enter OS Specification" name="sOS" id="sOS"
+            <input type="text" [(ngModel)]="serviceOSType1" ng-value="os" placeholder="Enter OS Specification" name="sOS" id="sOS"
               required>
             <p>RAM</p>
-            <input type="text" [(ngModel)]="serviceRAM1" placeholder="Enter RAM Specification" name="sRAM" id="sRAM"
+            <input type="text" [(ngModel)]="serviceRAM1" ng-value="price" placeholder="Enter RAM Specification" name="sRAM" id="sRAM"
               required>
             <p><b>Service Price</b></p>
-            <input type="text" [(ngModel)]="servicePrice1" placeholder="Enter Service Price" name="sPrice" id="sPrice"
+            <input type="text" [(ngModel)]="servicePrice1" ng-value="price" placeholder="Enter Service Price" name="sPrice" id="sPrice"
               required>
-            <input type="hidden" [(ngModel)]="ID1" name="sID" id="sID"
+            <input type="hidden" [(ngModel)]="ID1" ng-value="ID" name="sID" id="sID"
               required>
             <button (click)="updateDiscussion(ID1, serviceStatus1, serviceOSType1, serviceRAM1, servicePrice1)"
               type="submit"

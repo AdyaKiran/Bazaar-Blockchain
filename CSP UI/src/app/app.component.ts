@@ -88,12 +88,12 @@ export class AppComponent {
     });
   }
 
-  fillFields(id, price, ram, os) {
-    console.log('Inside fill fields function');
-    let that = this;
-    document.getElementById("sRAM").value = ram;
-    document.getElementById("sOS").value = os;
-    document.getElementById("sPrice").value = price;
-    document.getElementById("sID").value = id;
-  }
+  // fillFields(id, price, ram, os) {
+  //   console.log('Inside fill fields function');
+  //   let that = this;
+  //   document.getElementById("sRAM").value = ram;
+  //   document.getElementById("sOS").value = os;
+  //   document.getElementById("sPrice").value = price;
+  //   document.getElementById("sID").value = id;
+  // }
 }
