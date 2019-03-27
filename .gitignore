@@ -42,4 +42,5 @@ Thumbs.db
 # Truffle Files
 /build
 Commands.txt
+truffle.js
 

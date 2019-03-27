@@ -13,6 +13,7 @@ export class AppComponent {
   accounts:any;
   transferFrom: '0x0';
   balance = '0 ETH';
+  discussions = [];
 
   constructor( private ethcontractService: EthcontractService ){
     console.log('TEST');
@@ -30,15 +31,37 @@ export class AppComponent {
       console.log(error);
     });
   };
-   getDiscussions(_id) {
+   
+  getDiscussions(_id) {
     let that = this;
     this.ethcontractService.getDiscussions(this.transferFrom, _id).then(function(offer: any){
       console.log(offer);
+      var state;
+      if (offer[1].c[0] == 0)
+        state = "Advisory";
+      else if (offer[1].c[0] == 1)
+        state = "Solicited";
+      else if (offer[1].c[0] == 2)
+        state = "Acceptable";
+      else if (offer[1].c[0] == 3)
+        state = "Rejected";
+      
+      var jsn = {
+        'service': window.web3.toAscii(offer[0]),
+        'state': state,
+        'price': offer[2].c[0],
+        'ram': window.web3.toAscii(offer[3]),
+        'os': window.web3.toAscii(offer[4]),
+        'isCSP': offer[5]
+      };
+      console.log(jsn.ram);
+      that.discussions.push(jsn);
       // return offer;
     }).catch(function(error){
       console.log(error);
     });
   }
+
   getNumberofDiscussions() {
     let that = this;
     this.ethcontractService.getNumberOfDiscussions(this.transferFrom).then(function(numDisc: any){

@@ -1,31 +1,6 @@
-<!-- The content below is only a placeholder and can be replaced.
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
-<router-outlet></router-outlet> -->
-<head><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></head>
-<script type="text/javascript" src="app.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <div ng-app="servProvApp" ng-controller="servProvControl">
   <div class="container1">
+
     <h1>Bazaar Blockchain Demonstration</h1>
     <h2>Portal : Service Provider</h2>
     <hr>
@@ -41,20 +16,20 @@
         <div class="col-sm-4">
           <div class="col-sm-11" id="planA">
             <p><b>Plan A</b></p>
-            <p>OS Type: <b>Linux</b></p>
-            <p>RAM Specification: <b>8 GB</b></p>
-            <p>Price: <b>$40 per hour</b></p>
-            <p><button type="submit" class="negBtn">Negotiate Service</button></p>
+            <p>OS Type: <b><span id="planA-OS">Linux 32-bit</span></b></p>
+            <p>RAM Specification: <b><span id="planA-RAM">4 GB</span></b></p>
+            <p>Price: <span id="planA-price" style="display:none;">25</span><b>$25/hour</b></p>
+            <p><button type="button" class="negBtn" data-toggle="modal" data-target="#negotiateFormModal" (click)="fillFields('planA')">Negotiate Service</button></p>
           </div>
           <div class="col-sm-1"></div>
         </div>
         <div class="col-sm-4">
           <div class="col-sm-11" id="planB">
             <p><b>Plan B</b></p>
-            <p>OS Type: <b>Linux</b></p>
-            <p>RAM Specification: <b>4 GB</b></p>
-            <p>Price: <b>$25 per hour</b></p>
-            <p><button type="submit" class="negBtn">Negotiate Service</button></p>
+            <p>OS Type: <b><span id="planB-OS">Linux 64-bit</span></b></p>
+            <p>RAM Specification: <b><span id="planB-RAM">8 GB</span></b></p>
+            <p>Price: <span id="planB-price" style="display:none;">40</span><b>$40/hour</b></p>
+            <p><button type="button" class="negBtn" data-toggle="modal" data-target="#negotiateFormModal" (click)="fillFields('planB')">Negotiate Service</button></p>
           </div>
           <div class="col-sm-1"></div>
         </div>
@@ -63,19 +38,19 @@
             <p><b>Plan C</b></p>
             <p>OS Type: <b><span id="planC-OS">Windows</span></b></p>
             <p>RAM Specification: <b><span id="planC-RAM">8 GB</span></b></p>
-            <p>Price: <span id="planC-price" style="display:none;">65</span><b>$65 per hour</b></p>
-            <p><button type="button" class="negBtn" data-toggle="modal" data-target="#exampleModal" (click)="fillFields('planC')">Negotiate Service</button></p>
+            <p>Price: <span id="planC-price" style="display:none;">65</span><b>$65/hour</b></p>
+            <p><button type="button" class="negBtn" data-toggle="modal" data-target="#negotiateFormModal" (click)="fillFields('planC')">Negotiate Service</button></p>
           </div>
           <div class="col-sm-1"></div>
         </div>
       </div>
       
       <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="negotiateFormModal" tabindex="-1" role="dialog" aria-labelledby="negotiateFormModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Negotiate</h5>
+              <h5 class="modal-title" id="negotiateFormModalLabel">Negotiate</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -111,13 +86,26 @@
     </div>
     <hr>
 
-    
-
-    <h3>Ongoing Negotiations</h3>
-
+    <h3>Ongoing Negotiations</h3> <!--Edit table UI-->
+    <table>
+      <tr>
+        <th>Service</th>
+        <th>State</th>
+        <th>Price</th>
+        <th>RAM</th>
+        <th>OS</th>
+        <th>Negotiate</th>
+      </tr>
+      <tr *ngFor="let disc of discussions">
+        <td>{{ disc.service }}</td>
+        <td>{{ disc.state }}</td>
+        <td>{{ disc.price }}</td>
+        <td>{{ disc.ram }}</td>
+        <td>{{ disc.os }}</td>
+        <td>{{ disc.isCSP }}</td> <!--Replace this with negotiate button that calls 'updateDiscussion()'-->
+      </tr>
+    </table>
     <hr>
-
-    <h3>Negotiation Zone</h3>
     
   </div>
 </div>

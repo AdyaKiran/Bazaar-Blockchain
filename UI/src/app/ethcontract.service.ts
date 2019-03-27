@@ -71,7 +71,7 @@ export class EthcontractService {
     console.log('Getting Discussions');
     return new Promise((resolve, reject) => {
       console.log('inside promise');
-      var servContract = window.web3.eth.contract(tokenAbi.abi).at("0x9b4F742c8656b7bDAEbb4f70B803349ea4413179");
+      var servContract = window.web3.eth.contract(tokenAbi.abi).at("0x75dCbc9C16e35B2883690054075A38421F213fc9");
       servContract.getDiscussionFromID(_id, {from: _address, gas: 4698712, gasPrice: "120000000000"},function(error, result){
         if(!error){
           console.log('inethcontractservice');
@@ -81,7 +81,7 @@ export class EthcontractService {
           return reject('error');
         }
       })
-  }
+    }
   }
 
   async getNumberOfDiscussions(_address) {
@@ -89,7 +89,7 @@ export class EthcontractService {
     console.log('Getting Number of Discussions');
     return new Promise((resolve, reject) => {
       console.log('inside promise');
-      var servContract = window.web3.eth.contract(tokenAbi.abi).at("0x9b4F742c8656b7bDAEbb4f70B803349ea4413179");
+      var servContract = window.web3.eth.contract(tokenAbi.abi).at("0x75dCbc9C16e35B2883690054075A38421F213fc9");
       servContract.getNumberOfDiscussions( {from: _address, gas: 4698712, gasPrice: "120000000000"},function(error, result){
         if(!error){
           return resolve(result);
@@ -98,5 +98,5 @@ export class EthcontractService {
           return reject('error');
         }
       })
+    }
   }
-}
