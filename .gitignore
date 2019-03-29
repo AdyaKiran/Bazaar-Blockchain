@@ -10,6 +10,7 @@ CSP UI/tmp
 CSP UI/out-tsc
 
 # dependencies
+UI/node_modules
 Client UI/node_modules
 CSP UI/node_modules
 
