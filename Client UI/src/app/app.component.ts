@@ -10,6 +10,10 @@ export class AppComponent {
   title = 'Service Provider Portal';
 
   plan: '';
+  serviceOSType1;
+  serviceRAM1;
+  servicePrice1;
+
   accounts:any;
   transferFrom: '0x0';
   balance = '0 ETH';
@@ -75,8 +79,6 @@ export class AppComponent {
     });
   };
 
-  
-
   addNegotiation(_serviceStatus, _serviceOSType, _serviceRAM, _servicePrice) {
     let that = this;
     console.log("Adding negotiation Discussion for "+that.plan+_serviceStatus + _serviceOSType + _serviceRAM + _servicePrice);
@@ -96,8 +98,11 @@ export class AppComponent {
     console.log(document.getElementById(plan + "-RAM").innerHTML);
     console.log(document.getElementById(plan + "-OS").innerHTML);
     console.log(document.getElementById(plan + "-price").innerHTML);
-    document.getElementById("sRAM").value = document.getElementById(plan + "-RAM").innerHTML;
-    document.getElementById("sOS").value = document.getElementById(plan + "-OS").innerHTML;
-    document.getElementById("sPrice").value = document.getElementById(plan + "-price").innerHTML;
+    var x = document.getElementById(plan + "-RAM").innerHTML.toString();
+    this.serviceRAM1 = x;
+    x = document.getElementById(plan + "-OS").innerHTML;
+    this.serviceOSType1 = x;
+    x = document.getElementById(plan + "-price").innerHTML;
+    this.servicePrice1 = x;
   }
 }

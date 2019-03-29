@@ -95,3 +95,38 @@ a {
   width: 100%;
   opacity: 0.9;
 }
+
+#offers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#offers td, #offers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#offers tr:nth-child(even){background-color: #f2f2f2;}
+
+#offers tr:hover {background-color: #ddd;}
+
+#offers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: lightseagreen;
+  color: white;
+}
+
+#negBtn2 {
+  background-color: peachpuff;
+  color: black;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  padding: 10px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}

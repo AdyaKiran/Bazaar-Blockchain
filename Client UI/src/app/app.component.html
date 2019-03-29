@@ -1,4 +1,4 @@
-<div ng-app="servProvApp" ng-controller="servProvControl">
+<div ng-app="clientApp" ng-controller="clientControl">
   <div class="container1">
 
     <h1>Bazaar Blockchain Demonstration</h1>
@@ -87,7 +87,7 @@
     <hr>
 
     <h3>Ongoing Negotiations</h3> <!--Edit table UI-->
-    <table>
+    <table id="offers">
       <tr>
         <th>Service</th>
         <th>State</th>
@@ -102,7 +102,7 @@
         <td>{{ disc.price }}</td>
         <td>{{ disc.ram }}</td>
         <td>{{ disc.os }}</td>
-        <td><button *ngIf="disc.isCSP">Negotiate</button></td>
+        <td><button *ngIf="disc.isCSP" id="negBtn2">Negotiate</button></td>
       </tr>
     </table>
     <hr>

@@ -1,5 +1,5 @@
 import { Injectable, ɵConsole } from '@angular/core';
-// import * as Web3 from 'web3';
+//import * as Web3 from 'web3';
 import * as TruffleContract from 'truffle-contract';
 import { reject } from 'q';
 const Web3 = require('web3');
@@ -71,7 +71,7 @@ export class EthcontractService {
     console.log('Getting Discussions');
     return new Promise((resolve, reject) => {
       console.log('inside promise');
-      var servContract = window.web3.eth.contract(tokenAbi.abi).at("0x8FB176B1b0DC46F0C2E1ADdca9402C82e4faF6F3");
+      var servContract = window.web3.eth.contract(tokenAbi.abi).at("0x487D7C87612880c48496093522d01854dD810C76");
       servContract.getDiscussionFromID(_id, { from: _address, gas: 4698712, gasPrice: "120000000000" }, function (error, result) {
         if (!error) {
           console.log('inethcontractservice');
@@ -81,7 +81,7 @@ export class EthcontractService {
           return reject('error');
         }
       })
-    }
+    })
   }
 
   async getNumberOfDiscussions(_address) {
@@ -89,7 +89,7 @@ export class EthcontractService {
     console.log('Getting Number of Discussions');
     return new Promise((resolve, reject) => {
       console.log('inside promise');
-      var servContract = window.web3.eth.contract(tokenAbi.abi).at("0x8FB176B1b0DC46F0C2E1ADdca9402C82e4faF6F3");
+      var servContract = window.web3.eth.contract(tokenAbi.abi).at("0x487D7C87612880c48496093522d01854dD810C76");
       servContract.getNumberOfDiscussions({ from: _address, gas: 4698712, gasPrice: "120000000000" }, function (error, result) {
         if (!error) {
           return resolve(result);
@@ -98,6 +98,6 @@ export class EthcontractService {
           return reject('error');
         }
       })
-    }
+    })
   }
 }

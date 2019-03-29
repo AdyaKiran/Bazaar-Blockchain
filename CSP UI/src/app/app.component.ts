@@ -10,6 +10,12 @@ import { EthcontractService} from './ethcontract.service';
 export class AppComponent {
   title = 'Service Provider Portal';
 
+  serviceStatus2: '';
+  serviceOSType2: '';
+  serviceRAM2: '';
+  servicePrice2: '';
+  ID2: '';
+
   accounts:any;
   transferFrom: '0x0';
   balance = '0 ETH';
@@ -31,6 +37,17 @@ export class AppComponent {
       console.log(error);
     });
   };
+
+  fillFields(id, price, ram, os) {
+    let that = this;
+    console.log('Inside fill fields function');
+    console.log("Id: " + id);
+
+    this.ID2 = id;
+    this.serviceRAM2 = ram;
+    this.serviceOSType2 = os;
+    this.servicePrice2 = price;
+  }
    
   getDiscussions(_id) {
     let that = this;
