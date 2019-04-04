@@ -64,6 +64,7 @@
                 <option value=2>Solicited</option>
                 <option value=3>Accepted</option>
                 <!-- <option value=4>Rejected</option> -->
+                <!-- <option value=4>Rejected</option> -->
               </select>
               <p><b>Service Details</b></p>
               <p>OS Type</p>
@@ -72,6 +73,7 @@
               <input type="text" [(ngModel)]="serviceRAM1" placeholder="Enter RAM Specification" name="sRAM" id="sRAM" required>
               <p><b>Service Price</b></p>
               <input type="text" [(ngModel)]="servicePrice1" placeholder="Enter Service Price" name="sPrice" id="sPrice" required>
+              <input type="hidden" [(ngModel)]="cust" name="sCust" id="sCust" value = '{{ transferFrom }}' required>
               <button (click)="addNegotiation(serviceStatus1, serviceOSType1, serviceRAM1, servicePrice1)" type="submit"
                 class="registerbtn">Negotiate Service</button>
               <hr>
@@ -83,12 +85,55 @@
           </div>
         </div>
       </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="negotiateFormModal2" tabindex="-1" role="dialog" aria-labelledby="negotiateFormModalLabel2" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="negotiateFormModalLabel">Negotiate</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <!-- <p><b>Service ID</b></p>
+                <input type="text" [(ngModel)]="serviceID1" placeholder="Enter Service ID" name="sID" required> -->
+                <p><b>Service Status</b></p>
+                <select [(ngModel)]="serviceStatus3" class="select">
+                  <option value=1>Advisory</option>
+                  <option value=2>Solicited</option>
+                  <option value=3>Accepted</option>
+                  <option value=4>Rejected</option>
+                  <!-- <option value=4>Rejected</option> -->
+                </select>
+                <p><b>Service Details</b></p>
+                <input type="hidden" [(ngModel)]="ID3" ng-value="ID" name="sID" id="sID" required>
+                <p>OS Type</p>
+                <input type="text" [(ngModel)]="serviceOSType3" placeholder="Enter OS Specification" name="sOS" id="sOS" required>
+                <p>RAM</p>
+                <input type="text" [(ngModel)]="serviceRAM3" placeholder="Enter RAM Specification" name="sRAM" id="sRAM" required>
+                <p><b>Service Price</b></p>
+                <input type="text" [(ngModel)]="servicePrice3" placeholder="Enter Service Price" name="sPrice" id="sPrice" required>
+                <input type="hidden" [(ngModel)]="cust" name="sCust" id="sCust" value = '{{ transferFrom }}' required>
+                <button (click)="updateDiscussion(ID3, serviceStatus3, serviceOSType3, serviceRAM3, servicePrice3)" type="submit"
+                  class="registerbtn">Negotiate Service</button>
+                <hr>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Negotiate</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
     <hr>
 
     <h3>Ongoing Negotiations</h3> <!--Edit table UI-->
     <table id="offers">
       <tr>
+        <th>ID</th>
         <th>Service</th>
         <th>State</th>
         <th>Price</th>
@@ -97,12 +142,16 @@
         <th>Negotiate</th>
       </tr>
       <tr *ngFor="let disc of discussions">
-        <td>{{ disc.service }}</td>
-        <td>{{ disc.state }}</td>
-        <td>{{ disc.price }}</td>
-        <td>{{ disc.ram }}</td>
-        <td>{{ disc.os }}</td>
-        <td><button *ngIf="disc.isCSP" id="negBtn2">Negotiate</button></td>
+        <ng-container *ngIf="disc.customer == transferFrom">
+          <td>{{ disc.id }}</td>
+          <td>{{ disc.service }}</td>
+          <td>{{ disc.state }}</td>
+          <td>{{ disc.price }}</td>
+          <td>{{ disc.ram }}</td>
+          <td>{{ disc.os }}</td>
+          <td><button *ngIf="disc.isCSP" id="negBtn2" data-toggle="modal" data-target="#negotiateFormModal2"
+            (click)="fillFields2(disc.id, disc.price, disc.ram, disc.os);" [disabled]="disc.state == 'Rejected'">Negotiate</button></td>
+      </ng-container>
       </tr>
     </table>
     <hr>

@@ -14,6 +14,7 @@ contract BazaarContract {
 
   //Structure to describe the negotiation offer details
   struct negotiationOffer{
+    address customer;
     uint id;
     bytes32 planID;
     state offerState;
@@ -34,12 +35,12 @@ contract BazaarContract {
     return current_discussions;
   }
 
-  function getDiscussionFromID(uint _id) public view returns (bytes32 _planID, uint _offerState, uint _offerPrice, bytes32 _offerRAM, bytes32 _offerOSType, bool _isCSP, uint id){
+  function getDiscussionFromID(uint _id) public view returns (bytes32 _planID, uint _offerState, uint _offerPrice, bytes32 _offerRAM, bytes32 _offerOSType, bool _isCSP, uint id, address _customer){
     negotiationOffer memory temp = offersNeg[_id];
-    return (temp.planID, uint(temp.offerState), temp.offerPrice, temp.offerService.RAM, temp.offerService.OSType, temp.isCSP, _id);
+    return (temp.planID, uint(temp.offerState), temp.offerPrice, temp.offerService.RAM, temp.offerService.OSType, temp.isCSP, _id, temp.customer);
   }
 
-  function addDiscussion(bytes32 _planID, uint _offerState, uint _offerPrice, bytes32 _offerRAM, bytes32 _offerOSType) public returns (bool success){
+  function addDiscussion(bytes32 _planID, uint _offerState, uint _offerPrice, bytes32 _offerRAM, bytes32 _offerOSType, address _customer) public returns (bool success){
     negotiationOffer memory newDiscussion;
     if (_offerState == 1){
       newDiscussion.offerState = state.Advisory;
@@ -56,6 +57,7 @@ contract BazaarContract {
     newDiscussion.offerService.RAM = _offerRAM;
     newDiscussion.offerService.OSType = _offerOSType;
     newDiscussion.isCSP = false;
+    newDiscussion.customer = _customer;
 
     offersNeg[current_discussions] = newDiscussion;
     current_discussions++;
@@ -66,12 +68,15 @@ contract BazaarContract {
   function updateDiscussion(uint _id, uint _offerState, uint _offerPrice, bytes32 _offerRAM, bytes32 _offerOSType, bool _isCSP) public returns (bool success){
     negotiationOffer memory currentOffer = offersNeg[_id];
     if (_offerState == 1){
+      require(currentOffer.offerState == state.Advisory || currentOffer.offerState == state.Acceptable, "This state updation is invalid in accordance with WS-Negotiation Agreement");
       currentOffer.offerState = state.Advisory;
     }
     else if (_offerState == 2){
+      require(currentOffer.offerState == state.Advisory, "This state updation is invalid in accordance with WS-Negotiation Agreement");
       currentOffer.offerState = state.Solicited;
     }
     else if (_offerState == 3){
+      require(currentOffer.offerState == state.Advisory || currentOffer.offerState == state.Solicited, "This state updation is invalid in accordance with WS-Negotiation Agreement");
       currentOffer.offerState = state.Acceptable;
     }
     else if (_offerState == 4){

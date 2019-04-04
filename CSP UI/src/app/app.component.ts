@@ -70,7 +70,8 @@ export class AppComponent {
         'ram': window.web3.toAscii(offer[3]),
         'os': window.web3.toAscii(offer[4]),
         'isCSP': offer[5],
-        'id':offer[6].c[0]
+        'id': offer[6].c[0],
+        'customer': offer[7];
       };
       console.log(jsn.ram);
       that.discussions.push(jsn);

@@ -46,7 +46,7 @@ export class EthcontractService {
     })
   }
 
-  addDiscussion(_address, _planID, _offerState, _offerPrice, _offerRAM, _offerOSType) {
+  addDiscussion(_address, _planID, _offerState, _offerPrice, _offerRAM, _offerOSType, _custAddress) {
     let that = this;
     console.log('Negotiating Offer' + _planID);
     return new Promise((resolve, reject) => {
@@ -54,7 +54,7 @@ export class EthcontractService {
       servContract.setProvider(that.web3Provider);
       console.log("hello");
       servContract.deployed().then(function(instance) {
-        return instance.addDiscussion(window.web3.fromAscii(_planID), _offerState, _offerPrice, window.web3.fromAscii(_offerRAM), window.web3.fromAscii(_offerOSType), { from: _address, gas: 4698712, gasPrice: "120000000000"});
+        return instance.addDiscussion(window.web3.fromAscii(_planID), _offerState, _offerPrice, window.web3.fromAscii(_offerRAM), window.web3.fromAscii(_offerOSType), _custAddress, { from: _address, gas: 4698712, gasPrice: "120000000000"});
       }).then(function (status) {
         if (status){
           return resolve({status:true});
@@ -66,12 +66,32 @@ export class EthcontractService {
     });
   }
 
+  updateNegotiation(_address, _offerID, _offerState, _offerPrice, _offerRAM, _offerOSType) {
+    let that = this;
+    console.log('Negotiating Offer' + _offerID);
+    return new Promise((resolve, reject) => {
+      let servContract = TruffleContract(tokenAbi);
+      servContract.setProvider(that.web3Provider);
+      console.log("hello");
+      servContract.deployed().then(function (instance) { //line below, check how to send boolean values
+        return instance.updateDiscussion(_offerID, _offerState, _offerPrice, window.web3.fromAscii(_offerRAM), window.web3.fromAscii(_offerOSType), false, { from: _address, gas: 4698712, gasPrice: "120000000000" });
+      }).then(function (status) {
+        if (status) {
+          return resolve({ status: true });
+        }
+      }).catch(function (error) {
+        console.log(error);
+        return reject("Error in negotiating Offer");
+      });
+    });
+  }
+
   async getDiscussions(_address, _id){
     let that = this;
     console.log('Getting Discussions');
     return new Promise((resolve, reject) => {
       console.log('inside promise');
-      var servContract = window.web3.eth.contract(tokenAbi.abi).at("0x487D7C87612880c48496093522d01854dD810C76");
+      var servContract = window.web3.eth.contract(tokenAbi.abi).at("0x3AD2168F2197E5e3669eB6E0713F8a6eF5B70c06");
       servContract.getDiscussionFromID(_id, {from: _address, gas: 4698712, gasPrice: "120000000000"},function(error, result){
         if(!error){
           console.log('inethcontractservice');
@@ -89,7 +109,7 @@ export class EthcontractService {
     console.log('Getting Number of Discussions');
     return new Promise((resolve, reject) => {
       console.log('inside promise');
-      var servContract = window.web3.eth.contract(tokenAbi.abi).at("0x487D7C87612880c48496093522d01854dD810C76");
+      var servContract = window.web3.eth.contract(tokenAbi.abi).at("0x3AD2168F2197E5e3669eB6E0713F8a6eF5B70c06");
       servContract.getNumberOfDiscussions( {from: _address, gas: 4698712, gasPrice: "120000000000"},function(error, result){
         if(!error){
           return resolve(result);

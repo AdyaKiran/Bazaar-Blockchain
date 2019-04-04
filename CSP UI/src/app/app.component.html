@@ -14,6 +14,7 @@
     <table id="offers">
       <tr>
         <th>ID</th>
+        <th>Customer</th>
         <th>Service</th>
         <th>State</th>
         <th>Price</th>
@@ -23,6 +24,7 @@
       </tr>
       <tr *ngFor="let disc of discussions">
         <td>{{ disc.id }}</td>
+        <td>{{ disc.customer }}</td>
         <td>{{ disc.service }}</td>
         <td>{{ disc.state }}</td>
         <td>{{ disc.price }}</td>
@@ -30,7 +32,7 @@
         <td>{{ disc.os }}</td>
         <td><button type="button" id="negBtn2" data-toggle="modal" data-target="#negotiateFormModal"
             (click)="fillFields(disc.id, disc.price, disc.ram, disc.os);"
-            *ngIf="!disc.isCSP">Negotiate
+            *ngIf="!disc.isCSP" [disabled]="disc.state == 'Rejected' ">Negotiate
             further</button></td>
             <!--Implement onclick autofill field-->
       </tr>
